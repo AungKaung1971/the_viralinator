@@ -31,8 +31,8 @@ import asyncio
 async def main():
     client = Client('en-US')
     client.set_cookies({
-        'auth_token': '3ae4b197c808f88ee4a00a23f492041fa9f04c59',
-        'ct0': '798e8760ae05b91531994af462df378e843ccd085e5dfec67169146cef1f2086396732dbb3d0cae708cd70bcaec636c6dbcdbf227021a5dcb523e25090219016bec1aaca2c046519ba9ea2b23c1d8f47'
+        'auth_token': auth_token,
+        'ct0': cto_token
     })
 
     user = await client.get_user_by_screen_name('elonmusk')
