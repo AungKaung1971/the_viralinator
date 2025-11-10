@@ -34,16 +34,24 @@ Alternate between:
 """
 
     response = client.chat.completions.create(
-        model="gpt-5",
+        model="gpt-5-mini",
         messages=[{"role": "user", "content": prompt}],
     )
     tweets = response.choices[0].message.content.split("\n")
-    return [t.strip() for t in tweets if t.strip()]
+
+    cleaned = [t.strip() for t in tweets if t.strip()
+               and not t.strip(). startswith("Type:")]
+
+    return cleaned
 
 
 def save_tweets(tweets):
     conn = sqlite3.connect(data_base_path)
     cur = conn.cursor()
+
+    cur.execute("DELETE FROM tweets")
+    cur.execute("DELETE FROM sqlite_sequence WHERE name='tweets'")
+
     for tweet in tweets:
         cur.execute("INSERT INTO tweets (content) VALUES (?)", (tweet,))
     conn.commit()
@@ -57,8 +65,8 @@ if __name__ == "__main__":
         f"Saved {len(tweets)} tweets to database at {datetime.datetime.now()}")
 
 
-print("Model used:", response.model)
-
 # run code  = python3 -m generator.tweet_generator
 
 # view code  = sqlite3 data/viralinator.db "SELECT * FROM tweets;"
+
+# clearing cache = rm -rf **/__pycache__/
