@@ -89,43 +89,6 @@ def reply_generator(tweet_content, niche="tech"):
 
     return response.choices[0].message.content.strip()
 
-# def reply_generator(tweet_content, niche="tech"):
-#     clean_tweet = tweet_content.split("https")[0][:250]
-
-#     prompt = f"""
-#     You are a sharp, witty commentator in the {niche} niche.
-#     Write a short, natural reply (under 25 words) to the following tweet:
-#     ---
-#     {clean_tweet}
-#     ---
-#     The reply should sound conversational and insightful, not promotional.
-#     """
-
-#     print("\n=== PROMPT SENT TO GPT ===")
-#     print(prompt)
-#     print("==========================")
-
-#     response = client.chat.completions.create(
-#         model="gpt-5-mini",
-#         messages=[{"role": "user", "content": prompt}],
-#     )
-
-#     print("\n=== RAW GPT RESPONSE ===")
-#     print(response)
-#     print("========================\n")
-
-#     try:
-#         reply = response.choices[0].message.content
-#         print("Extracted reply:", repr(reply))
-#         if not reply or not reply.strip():
-#             print("⚠️ GPT returned empty content or only whitespace.")
-#             reply = "[Empty GPT reply]"
-#     except Exception as e:
-#         print("❌ Exception extracting reply:", e)
-#         reply = "[Error parsing GPT reply]"
-
-#     return reply.strip()
-
 
 # scraper code
 
@@ -172,6 +135,6 @@ if __name__ == "__main__":
 # python -m monitor.influencer_monitor
 
 # sqlite3 data/tweetinator.db "SELECT * FROM influencer_posts;"
-
+# sqlite3 data/tweetinator.db "SELECT * FROM generated_replies;"
 
 # data base code paste above after
