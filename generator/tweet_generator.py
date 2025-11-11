@@ -49,6 +49,13 @@ def save_tweets(tweets):
     conn = sqlite3.connect(data_base_path)
     cur = conn.cursor()
 
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS tweets (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            content TEXT NOT NULL
+        )
+    """)
+
     cur.execute("DELETE FROM tweets")
     cur.execute("DELETE FROM sqlite_sequence WHERE name='tweets'")
 
@@ -67,6 +74,6 @@ if __name__ == "__main__":
 
 # run code  = python3 -m generator.tweet_generator
 
-# view code  = sqlite3 data/viralinator.db "SELECT * FROM tweets;"
+# view code  = sqlite3 data/tweetinator.db "SELECT * FROM tweets;"
 
 # clearing cache = rm -rf **/__pycache__/
