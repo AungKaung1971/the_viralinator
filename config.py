@@ -19,3 +19,6 @@ data_base_path = "data/tweetinator.db"
 
 auth_token = os.getenv("AUTH_TOKEN")
 cto_token = os.getenv("CTO_TOKEN")
+
+target_users = ["elonmusk", "sama",
+                "realDonaldTrump", "joerogan", "TuckerCarlson", "BillGates"]

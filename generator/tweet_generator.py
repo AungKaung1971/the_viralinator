@@ -6,6 +6,8 @@ from config import openAI_key, data_base_path
 
 client = OpenAI(api_key=openAI_key)
 
+print("OpenAI SDK version:", getattr(OpenAI, "__version__", "old SDK"))
+
 
 def generate_tweets(n=5, niche="tech"):
     prompt = f"""You are a sharp, observant {niche} pundit and commentator. You cover trending topics.
